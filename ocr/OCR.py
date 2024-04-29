@@ -83,7 +83,7 @@ remaining_days = remaining_duration.days % 30
 
 
 if remaining_years <= 0:
-    remaining_years = 0;
+    remaining_years = 0
 elif remaining_months <= 0:
    remaining_months= 0
 elif remaining_days <= 0:
