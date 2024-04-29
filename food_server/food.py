@@ -102,7 +102,7 @@ def describe_vegetable():
                     },
                     {
                         "type": "text",
-                        "text": "describe the vegetable and dishes can be prepared with it. give in json format"
+                        "text": "give name, condition, shelf life, and give 3 recipes consisting of recipename, ingredients, instructions, and calories give the data in json format.just give the direct prompted data without any other messages included"
                     }
                 ],
             }

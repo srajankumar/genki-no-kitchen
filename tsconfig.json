@@ -30,5 +30,8 @@
     ".next/types/**/*.ts",
     "app/scan/unpackaged/page.js"
 , "app/barcode/page.js"  ],
+
+  
+
   "exclude": ["node_modules"]
 }
