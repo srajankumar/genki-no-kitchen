@@ -5,9 +5,9 @@ import numpy as np
 from datetime import datetime
 import re
 import json
-
+from flask_cors import CORS
 app = Flask(__name__)
-
+CORS(app)
 pytesseract.pytesseract.tesseract_cmd = r'D:/Setups/Tesseract/tesseract.exe'
 
 def grayscale(image):
@@ -75,4 +75,4 @@ def extract_dates():
     return jsonify(dates_dict)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True,port=5002)
