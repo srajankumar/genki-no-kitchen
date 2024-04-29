@@ -57,3 +57,9 @@
     @apply bg-background text-foreground;
   }
 }
+
+@media screen and (max-width: 50em) {
+  .parallax-bg {
+    background-image: url("/cover_img.jpg");
+  }
+}

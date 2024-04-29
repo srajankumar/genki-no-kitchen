@@ -36,7 +36,7 @@ export default function Login() {
             quality={100}
             priority
             src="/bg29.png"
-            className="bg-black object-center w-full h-full z-20"
+            className="bg-black object-center w-full h-[100dvh] z-20"
             width={500}
             height={500}
             alt="login-image"
