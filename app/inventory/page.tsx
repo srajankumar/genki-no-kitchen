@@ -1,7 +1,28 @@
 "use client";
 import { useEffect, useState } from "react";
-import { createClient } from "@/utils/supabase/client"; // Adjust the path based on your project structure
+import { createClient } from "@/utils/supabase/client";
 
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+
+import { ScrollArea } from "@/components/ui/scroll-area";
 export default function ItemPage() {
   const [items, setItems] = useState<any[]>([]);
 
@@ -23,21 +44,62 @@ export default function ItemPage() {
   }
 
   return (
-    <div>
-      <h1>Items</h1>
-      <ul>
-        {items.map((item: any) => (
-          <li key={item.id}>
-            <p>Name: {item.name}</p>
-            <p>Condition: {item.condition}</p>
-            <p>Shelf Life: {item.shelf_life}</p>
-            <p>Ingredients: {item.ingredients}</p>
-            <p>Item Validity: {item.item_validity}</p>
-            <p>Barcode Number: {item.barcode_number}</p>
-            <p>Quantity: {item.quantity}</p>
-            <p>Price: {item.price}</p>
-            <p>User ID: {item.user_id}</p>
-          </li>
+    <div className="mx-auto p-5 pt-20">
+      <h1 className="text-3xl z-20 font-semibold mb-10 text-center">
+        Generated Recipes
+      </h1>
+      <ul className="grid z020 md:grid-cols-3 sm:grid-cols-2 gap-5">
+        {items.map((item: any, key) => (
+          <AlertDialog key={key}>
+            <AlertDialogTrigger>
+              <Card className="hover:scale-[102%] border hover:border-green-500 transition-all duration-200">
+                <CardHeader>
+                  <CardTitle className="text-xl text-start">
+                    {item.name}
+                  </CardTitle>
+                </CardHeader>
+                {/* <CardContent>
+                 <p>Card Content</p>
+               </CardContent> */}
+                {/* <CardFooter>
+                  <p>{item.calories} Calories</p>
+                </CardFooter> */}
+              </Card>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle className="text-xl">
+                  {item.name}
+                </AlertDialogTitle>
+                <AlertDialogDescription>
+                  <div className="text-left text-lg">
+                    {item.name && (
+                      <p className="pt-3 pb-1">
+                        <strong>Name:</strong> {item.name}
+                      </p>
+                    )}
+
+                    {item.condition && (
+                      <p className="pb-1">
+                        <strong>Item State: </strong>
+                        {item.condition}
+                      </p>
+                    )}
+
+                    {item.shelf_life && (
+                      <p className="pb-1">
+                        <strong>Shelf Life period: </strong>
+                        {item.shelf_life}
+                      </p>
+                    )}
+                  </div>
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Close</AlertDialogCancel>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
         ))}
       </ul>
     </div>
