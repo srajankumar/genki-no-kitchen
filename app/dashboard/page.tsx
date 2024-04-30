@@ -24,9 +24,6 @@ const page = () => {
           <Link href="/inventory">
             <Button className="w-96">Inventory</Button>
           </Link>
-          {/* <Link href="/add-manual">
-            <Button className="w-96">Add Items</Button>
-          </Link> */}
           <Link href="/scan/unpackaged">
             <Button className="w-96">Add Items</Button>
           </Link>

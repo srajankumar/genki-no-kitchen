@@ -207,6 +207,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { createClient } from "@/utils/supabase/client";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 function App() {
   const [image, setImage] = useState(null);
@@ -373,7 +374,12 @@ function App() {
           )}
         </Button>
       </div>
-
+      <div className="text-sm text-white/75 tracking-wider pt-5 items-center flex flex-col">
+        <div>Trouble in uploading files?</div>
+        <Link href="/add-manual" className="underline underline-offset-4">
+          Add manually
+        </Link>
+      </div>
       {/* Description Section */}
       {/* {description && (
         <div>
@@ -381,7 +387,6 @@ function App() {
           <pre className="text-sm">{formatDescription(jsonData)}</pre>
         </div>
       )} */}
-
       {/* JSON Data Section */}
       {/* {jsonData && (
         <div>
