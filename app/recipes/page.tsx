@@ -48,18 +48,18 @@ export default function Home() {
 
   return (
     <div className="mx-auto p-5 pt-20">
-      <h1 className="text-3xl font-semibold mb-10 text-center">
+      <h1 className="text-3xl z-20 font-semibold mb-10 text-center">
         Generated Recipes
       </h1>
-      <ul className="grid md:grid-cols-3 sm:grid-cols-2 gap-5">
+      <ul className="grid z020 md:grid-cols-3 sm:grid-cols-2 gap-5">
         {data.map((item, index) => {
           const name = item.name.replace(/"/g, ""); // Remove double quotes from recipe name
           return (
             <AlertDialog key={index}>
               <AlertDialogTrigger>
-                <Card>
+                <Card className="hover:scale-[102%] border hover:border-green-500 transition-all duration-200">
                   <CardHeader>
-                    <CardTitle>{name}</CardTitle>
+                    <CardTitle className="text-xl text-start">{name}</CardTitle>
                   </CardHeader>
                   {/* <CardContent>
                     <p>Card Content</p>

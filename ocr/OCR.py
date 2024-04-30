@@ -8,7 +8,7 @@ import json
 from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
-pytesseract.pytesseract.tesseract_cmd = r'D:/Setups/Tesseract/tesseract.exe'
+pytesseract.pytesseract.tesseract_cmd = r'C:/Program Files/Tesseract-OCR/tesseract.exe'
 
 def grayscale(image):
     return cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -59,6 +59,12 @@ def extract_dates():
         remaining_years = remaining_duration.days // 365
         remaining_months = (remaining_duration.days % 365) // 30
         remaining_days = remaining_duration.days % 30
+        if remaining_years <= 0:
+            remaining_years = 0
+        elif remaining_months <= 0:
+            remaining_months= 0
+        elif remaining_days <= 0:
+            remaining_days= 0
 
         dates_dict["dates"] = {
             "mdate": mdate,

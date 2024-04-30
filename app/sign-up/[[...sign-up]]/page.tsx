@@ -3,20 +3,22 @@ import Image from "next/image";
 
 export default function Login() {
   return (
-    <div className="w-full lg:grid lg:grid-cols-2 min-h-[100dvh] px-5 max-w-7xl mx-auto">
-      <div className="flex items-center min-h-[100dvh] justify-center py-12">
-        <div className="mx-auto grid w-[500px] gap-6">
+    <div className="container relative min-h-[100dvh] flex-col items-center justify-center grid lg:max-w-none lg:grid-cols-2 lg:px-0">
+      <div className="relative hidden h-full flex-col bg-muted text-white lg:flex dark:border-r">
+        <Image
+          quality={100}
+          priority
+          src="/bg29.png"
+          className="bg-black object-center w-full h-[100dvh] z-20"
+          width={500}
+          height={500}
+          alt="login-image"
+        ></Image>
+      </div>
+      <div className="lg:p-8">
+        <div className="mx-auto flex flex-col justify-center space-y-6 w-[350px]">
           <SignUp path="/sign-up" />
         </div>
-      </div>
-      <div className="hidden lg:flex mx-auto justify-center items-center">
-        <Image
-          src="/assets/images/auth/sign-up.png"
-          alt="Image"
-          width="500"
-          height="500"
-          className="w-full h-fit"
-        />
       </div>
     </div>
   );

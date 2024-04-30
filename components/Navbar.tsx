@@ -1,5 +1,6 @@
 "use client";
 
+import { ClerkProvider, SignedIn, UserButton } from "@clerk/nextjs";
 import { File, Home, PlusCircle, ScanBarcode, Utensils } from "lucide-react";
 import Link from "next/link";
 import React from "react";
@@ -57,6 +58,12 @@ const Navbar = () => {
           <ScanBarcode className="w-6 h-6" />
           <p className="text-sm">Barcode</p>
         </Link>
+        <div className=" flex gap-0.5 justify-center items-center flex-col">
+          <SignedIn>
+            <UserButton afterSignOutUrl="/" />
+          </SignedIn>
+          <p className="text-sm">Profile</p>
+        </div>
       </div>
     </div>
   );

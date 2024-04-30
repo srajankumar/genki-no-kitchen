@@ -30,7 +30,7 @@ const Info = () => {
     setName("");
     setAge("");
     setAllergies("");
-    window.location.href = "/dashboard";
+    window.location.href = "/";
   };
 
   return (

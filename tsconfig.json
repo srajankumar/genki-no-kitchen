@@ -28,10 +28,9 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "app/scan/unpackaged/page.js"
-, "app/barcode/page.js"  ],
-
-  
+    "app/scan/unpackaged/page.js",
+    "app/barcode/page.tsx"
+  ],
 
   "exclude": ["node_modules"]
 }
