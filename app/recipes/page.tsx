@@ -47,7 +47,7 @@ export default function Home() {
   }
 
   return (
-    <div className="mx-auto p-5 pt-20">
+    <div className="mx-auto p-5 pt-20 pb-40">
       <h1 className="text-3xl z-20 font-semibold mb-10 text-center">
         Generated Recipes
       </h1>

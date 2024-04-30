@@ -100,7 +100,7 @@ const Navbar = () => {
                   <img src="/undraw.svg" alt="undraw" />
                 </DialogDescription>
               </DialogHeader>
-              <DialogFooter className="w-full">
+              <DialogFooter className="w-full flex gap-3">
                 <Link href="/barcode" className="w-full">
                   <Button className="w-full">
                     <Barcode className="md:w-6 w-5 md:h-6 h-5 pr-1" />
