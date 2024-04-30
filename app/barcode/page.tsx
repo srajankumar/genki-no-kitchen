@@ -24,7 +24,7 @@ function App() {
       formData.append("file", image);
 
       const response = await axios.post(
-        "http://localhost:5001//read_barcode",
+        "http://localhost:5001/read_barcode",
         formData,
         {
           headers: {
@@ -39,9 +39,17 @@ function App() {
 
       setIsLoading(true);
       const supabase = createClient();
-      await supabase.from("user").insert({ barcode_number: jsonData });
+      const { data, error } = await supabase
+        .from("user")
+        .insert({ barcode_number: jsonData });
+      if (error) {
+        console.error("Supabase insertion error:", error.message);
+      } else {
+        console.log("Data inserted successfully:", data);
+      }
       setIsLoading(false);
     } catch (error) {
+      setIsLoading(false);
       console.error("Error:", error);
     }
   };
