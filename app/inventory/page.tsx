@@ -46,7 +46,7 @@ export default function ItemPage() {
   return (
     <div className="mx-auto p-5 pt-20">
       <h1 className="text-3xl z-20 font-semibold mb-10 text-center">
-        Generated Recipes
+        Inventory
       </h1>
       <ul className="grid z020 md:grid-cols-3 sm:grid-cols-2 gap-5">
         {items.map((item: any, key) => (

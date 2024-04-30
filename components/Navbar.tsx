@@ -1,71 +1,129 @@
 "use client";
 
 import { ClerkProvider, SignedIn, UserButton } from "@clerk/nextjs";
-import { File, Home, PlusCircle, ScanBarcode, Utensils } from "lucide-react";
+import {
+  Barcode,
+  File,
+  Home,
+  PlusCircle,
+  ScanBarcode,
+  ScanLine,
+  Utensils,
+} from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import { usePathname } from "next/navigation";
+
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+
+import { Button } from "./ui/button";
 
 const Navbar = () => {
   const path = usePathname();
 
   const pathname = path;
   return (
-    <div className="fixed z-50 bg-gradient-to-t from-background to-transparent bottom-0 w-full flex justify-between items-center py-5 px-5">
-      <div className="flex justify-between text-white/50 items-center w-full mx-auto max-w-xl">
-        <Link
-          href="/"
-          className={`${
-            pathname == "/" ? "text-white" : ""
-          } flex gap-1 justify-center items-center flex-col`}
-        >
-          <Home className="w-6 h-6" />
-          <p className="text-sm">Home</p>
-        </Link>
-        <Link
-          href="/inventory"
-          className={`${
-            pathname == "/inventory" ? "text-white" : ""
-          } flex gap-1 justify-center items-center flex-col`}
-        >
-          <File className="w-6 h-6" />
-          <p className="text-sm">Inventory</p>
-        </Link>
-        <Link
-          href="/recipes"
-          className={`${
-            pathname == "/recipes" ? "text-white" : ""
-          } flex gap-1 justify-center items-center flex-col`}
-        >
-          <Utensils className="w-6 h-6" />
-          <p className="text-sm">Recipes</p>
-        </Link>
-        <Link
-          href="/scan/unpackaged"
-          className={`${
-            pathname == "/scan/unpackaged" ? "text-white" : ""
-          } flex gap-1 justify-center items-center flex-col`}
-        >
-          <PlusCircle className="w-6 h-6" />
-          <p className="text-sm">Add Items</p>
-        </Link>
-        <Link
-          href="/scan/packaged"
-          className={`${
-            pathname == "/scan/packaged" ? "text-white" : ""
-          } flex gap-1 justify-center items-center flex-col`}
-        >
-          <ScanBarcode className="w-6 h-6" />
-          <p className="text-sm">Barcode</p>
-        </Link>
-        <div className=" flex gap-0.5 justify-center items-center flex-col">
-          <SignedIn>
+    <SignedIn>
+      <div className="fixed z-50 bg-gradient-to-t from-background to-transparent bottom-0 w-full flex justify-between items-center py-5 px-5">
+        <div className="flex justify-between text-white/50 items-center w-full mx-auto max-w-xl">
+          <Link
+            href="/"
+            className={`${
+              pathname == "/" ? "text-white" : ""
+            } flex gap-1 justify-center items-center flex-col`}
+          >
+            <Home className="md:w-6 w-5 md:h-6 h-5" />
+            <p className="text-sm">Home</p>
+          </Link>
+          <Link
+            href="/inventory"
+            className={`${
+              pathname == "/inventory" ? "text-white" : ""
+            } flex gap-1 justify-center items-center flex-col`}
+          >
+            <File className="md:w-6 w-5 md:h-6 h-5" />
+            <p className="text-sm">Inventory</p>
+          </Link>
+          <Link
+            href="/recipes"
+            className={`${
+              pathname == "/recipes" ? "text-white" : ""
+            } flex gap-1 justify-center items-center flex-col`}
+          >
+            <Utensils className="md:w-6 w-5 md:h-6 h-5" />
+            <p className="text-sm">Recipes</p>
+          </Link>
+          <Link
+            href="/scan/unpackaged"
+            className={`${
+              pathname == "/scan/unpackaged" ? "text-white" : ""
+            } flex gap-1 justify-center items-center flex-col`}
+          >
+            <PlusCircle className="md:w-6 w-5 md:h-6 h-5" />
+            <p className="text-sm">Add Items</p>
+          </Link>
+
+          <Dialog>
+            <DialogTrigger>
+              <div
+                className={`${
+                  pathname == "/scan/packaged" ? "text-white" : ""
+                } flex gap-1 justify-center items-center flex-col`}
+              >
+                <ScanBarcode className="md:w-6 w-5 md:h-6 h-5" />
+                <p className="text-sm">Barcode</p>
+              </div>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogDescription>
+                  <img src="/undraw.svg" alt="undraw" />
+                </DialogDescription>
+              </DialogHeader>
+              <DialogFooter className="w-full">
+                <Link href="/barcode" className="w-full">
+                  <Button className="w-full">
+                    <Barcode className="md:w-6 w-5 md:h-6 h-5 pr-1" />
+                    Barcode
+                  </Button>
+                </Link>
+                <Link href="/validity" className="w-full">
+                  <Button className="w-full">
+                    <ScanLine className="md:w-6 w-5 md:h-6 h-5 pr-1" />
+                    OCR
+                  </Button>
+                </Link>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+
+          <div className=" flex gap-0.5 justify-center items-center flex-col">
             <UserButton afterSignOutUrl="/" />
-          </SignedIn>
-          <p className="text-sm">Profile</p>
+            <p className="text-sm">Profile</p>
+          </div>
         </div>
       </div>
-    </div>
+    </SignedIn>
   );
 };
 

@@ -65,7 +65,9 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-api_key = "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"
+# api_key = "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"
+# api_key = "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"
+api_key = "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"
 client = anthropic.Anthropic(api_key=api_key)
 
 @app.route('/describe_vegetable', methods=['POST'])
@@ -102,7 +104,7 @@ def describe_vegetable():
                     },
                     {
                         "type": "text",
-                        "text": "give name, condition, shelf life, and give 3 recipes consisting of recipename, ingredients, instructions, and calories give the data in json format.just give the direct prompted data without any other messages included"
+                        "text": "give name, condition, shelf_life, and give 3 recipes consisting of recipename, ingredients, instructions, and calories give the data in json format.just give the direct prompted data without any other messages included"
                     }
                 ],
             }

@@ -53,7 +53,7 @@ export default function Home() {
       </h1>
       <ul className="grid z020 md:grid-cols-3 sm:grid-cols-2 gap-5">
         {data.map((item, index) => {
-          const name = item.name.replace(/"/g, ""); // Remove double quotes from recipe name
+          const name = item.name.replace(/"/g, "");
           return (
             <AlertDialog key={index}>
               <AlertDialogTrigger>

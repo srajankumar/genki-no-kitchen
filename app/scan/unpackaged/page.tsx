@@ -208,6 +208,7 @@ import axios from "axios";
 import { createClient } from "@/utils/supabase/client";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { useToast } from "@/components/ui/use-toast";
 
 function App() {
   const [image, setImage] = useState(null);
@@ -215,6 +216,7 @@ function App() {
   const [jsonData, setJsonData] = useState(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const { toast } = useToast();
 
   const handleImageChange = (e: any) => {
     const selectedImage = e.target.files[0];
@@ -273,6 +275,10 @@ function App() {
       });
 
       setIsLoading(false);
+      toast({
+        title: "Item added to inventory",
+        variant: "success",
+      });
       setImagePreview(null);
     } catch (error) {
       setIsLoading(false);
