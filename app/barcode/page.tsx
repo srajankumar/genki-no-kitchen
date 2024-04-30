@@ -6,8 +6,8 @@ import { createClient } from "@/utils/supabase/client";
 function App() {
   const [image, setImage] = useState(null);
   const [description, setDescription] = useState("");
-  const [jsonData, setJsonData] = useState(null); // Use null to avoid empty object
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [jsonData, setJsonData] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleImageChange = (e: any) => {
     setImage(e.target.files[0]);
@@ -39,9 +39,10 @@ function App() {
 
       setIsLoading(true);
       const supabase = createClient();
+      // Assuming you have a table named 'user_data' with a column 'json_data'
       const { data, error } = await supabase
-        .from("user")
-        .insert({ barcode_number: jsonData });
+        .from("item")
+        .insert([{ barcode_data: jsonData["barcode_data"] }]);
       if (error) {
         console.error("Supabase insertion error:", error.message);
       } else {
@@ -54,7 +55,6 @@ function App() {
     }
   };
 
-  // Clear data when there's no image selected (optional)
   useEffect(() => {
     if (!image) {
       setJsonData(null);
@@ -85,7 +85,7 @@ function App() {
           <pre className="text-sm">{description}</pre>
         </div>
       )}
-      {jsonData && ( // Only display JSON data if it exists
+      {jsonData && (
         <div className="bg-gray-100 p-4 rounded">
           <h2 className="text-lg font-bold mb-2">JSON Data:</h2>
           <pre className="text-sm">{JSON.stringify(jsonData, null, 2)}</pre>
