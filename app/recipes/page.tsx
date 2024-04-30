@@ -13,6 +13,16 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 export default function Home() {
   const [data, setData] = useState<any[]>([]);
@@ -37,42 +47,77 @@ export default function Home() {
   }
 
   return (
-    <div className="container mx-auto p-4 pt-6 md:p-6 lg:p-12">
-      <h1 className="text-3xl font-bold mb-4">Data from Supabase</h1>
-      <ul className="list-none mb-4 gap-5 flex flex-col">
-        {data.map((item, index) => (
-          <div key={index} className="border">
-            <p>
-              <strong>ID:</strong> {item.id}
-            </p>
-            <p>
-              <strong>Name:</strong> {item.name}
-            </p>
-            <p>
-              <strong>Ingredients:</strong>
-            </p>
-            <ul>
-              {JSON.parse(item.ingredients).map(
-                (ingredient: string, i: number) => (
-                  <li key={i}>{ingredient}</li>
-                )
-              )}
-            </ul>
-            <p>
-              <strong>Instructions:</strong>
-            </p>
-            <ol>
-              {JSON.parse(item.instructions).map(
-                (instruction: string, i: number) => (
-                  <li key={i}>{instruction}</li>
-                )
-              )}
-            </ol>
-            <p>
-              <strong>Calories:</strong> {item.calories}
-            </p>
-          </div>
-        ))}
+    <div className="mx-auto p-5 pt-20">
+      <h1 className="text-3xl font-semibold mb-10 text-center">
+        Generated Recipes
+      </h1>
+      <ul className="grid md:grid-cols-3 sm:grid-cols-2 gap-5">
+        {data.map((item, index) => {
+          const name = item.name.replace(/"/g, ""); // Remove double quotes from recipe name
+          return (
+            <AlertDialog key={index}>
+              <AlertDialogTrigger>
+                <Card>
+                  <CardHeader>
+                    <CardTitle>{name}</CardTitle>
+                  </CardHeader>
+                  {/* <CardContent>
+                    <p>Card Content</p>
+                  </CardContent> */}
+                  <CardFooter>
+                    <p>{item.calories} Calories</p>
+                  </CardFooter>
+                </Card>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <ScrollArea className="h-[600px] w-full">
+                  <AlertDialogHeader>
+                    <AlertDialogTitle className="text-xl">
+                      {name}
+                    </AlertDialogTitle>
+                    <AlertDialogDescription>
+                      <div className="text-left text-lg">
+                        <p className="py-3">
+                          <strong>ID:</strong> {item.id}
+                        </p>
+                        <p className="pb-1">
+                          <strong>Ingredients:</strong>
+                        </p>
+                        <ul>
+                          {JSON.parse(item.ingredients).map(
+                            (ingredient: string, i: number) => (
+                              <li className="list-disc ml-4" key={i}>
+                                {ingredient}
+                              </li>
+                            )
+                          )}
+                        </ul>
+                        <p className="pt-5 pb-1">
+                          <strong>Instructions:</strong>
+                        </p>
+                        <ol>
+                          {JSON.parse(item.instructions).map(
+                            (instruction: string, i: number) => (
+                              <li className="list-disc ml-4" key={i}>
+                                {instruction}
+                              </li>
+                            )
+                          )}
+                        </ol>
+                        <p className="pt-5 pb-1">
+                          <strong>Calories:</strong> {item.calories}
+                        </p>
+                      </div>
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Close</AlertDialogCancel>
+                  </AlertDialogFooter>
+                </ScrollArea>
+              </AlertDialogContent>
+            </AlertDialog>
+          );
+        })}
       </ul>
     </div>
   );
