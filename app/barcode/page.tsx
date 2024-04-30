@@ -38,6 +38,7 @@ function App() {
       setDescription(JSON.stringify(jsonData));
 
       setIsLoading(true);
+
       const supabase = createClient();
       // Assuming you have a table named 'user_data' with a column 'json_data'
       const { data, error } = await supabase
