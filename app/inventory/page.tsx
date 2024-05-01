@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
 import { createClient } from "@/utils/supabase/client";
-
 import {
   AlertDialog,
   AlertDialogAction,
@@ -21,8 +20,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-
 import { ScrollArea } from "@/components/ui/scroll-area";
+
 export default function ItemPage() {
   const [items, setItems] = useState<any[]>([]);
 
@@ -48,22 +47,16 @@ export default function ItemPage() {
       <h1 className="text-3xl z-20 font-semibold mb-10 text-center">
         Inventory
       </h1>
-      <ul className="grid z020 md:grid-cols-3 sm:grid-cols-2 gap-5">
+      <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-5">
         {items.map((item: any, key) => (
           <AlertDialog key={key}>
             <AlertDialogTrigger>
-              <Card className="hover:scale-[102%] border hover:border-green-500 transition-all duration-200">
+              <Card className="hover:scale-[102%] border hover:border-green-500 w-80 transition-all duration-200">
                 <CardHeader>
                   <CardTitle className="text-xl text-start">
                     {item.name}
                   </CardTitle>
                 </CardHeader>
-                {/* <CardContent>
-                 <p>Card Content</p>
-               </CardContent> */}
-                {/* <CardFooter>
-                  <p>{item.calories} Calories</p>
-                </CardFooter> */}
               </Card>
             </AlertDialogTrigger>
             <AlertDialogContent>
@@ -76,6 +69,12 @@ export default function ItemPage() {
                     {item.name && (
                       <p className="pt-3 pb-1">
                         <strong>Name:</strong> {item.name}
+                      </p>
+                    )}
+
+                    {item.quantity && (
+                      <p className="pt-3 pb-1">
+                        <strong>Quantity:</strong> {item.quantity}
                       </p>
                     )}
 
@@ -101,7 +100,7 @@ export default function ItemPage() {
             </AlertDialogContent>
           </AlertDialog>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }

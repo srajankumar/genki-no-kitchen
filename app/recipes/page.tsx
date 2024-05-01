@@ -51,13 +51,13 @@ export default function Home() {
       <h1 className="text-3xl z-20 font-semibold mb-10 text-center">
         Generated Recipes
       </h1>
-      <ul className="grid z020 md:grid-cols-3 sm:grid-cols-2 gap-5">
+      <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-5">
         {data.map((item, index) => {
           const name = item.name.replace(/"/g, "");
           return (
             <AlertDialog key={index}>
               <AlertDialogTrigger>
-                <Card className="hover:scale-[102%] border hover:border-green-500 transition-all duration-200">
+                <Card className="hover:scale-[102%] border hover:border-green-500 w-80 transition-all duration-200">
                   <CardHeader>
                     <CardTitle className="text-xl text-start">{name}</CardTitle>
                   </CardHeader>
@@ -118,7 +118,7 @@ export default function Home() {
             </AlertDialog>
           );
         })}
-      </ul>
+      </div>
     </div>
   );
 }

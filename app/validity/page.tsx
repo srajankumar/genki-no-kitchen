@@ -5,8 +5,27 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useToast } from "@/components/ui/use-toast";
 
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+
+interface Dates {
+  edate: string;
+  mdate: string;
+  rd: number;
+  rm: number;
+  ry: number;
+}
+
 function App() {
   const [image, setImage] = useState(null);
+  const [dates, setDates] = useState<Dates | null>(null);
   const [description, setDescription] = useState("");
   const [jsonData, setJsonData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -55,7 +74,12 @@ function App() {
 
       const jsonData = response.data;
       setJsonData(jsonData);
+      setDates(jsonData["dates"]);
       setDescription(JSON.stringify(jsonData));
+      toast({
+        title: "Scan Successful",
+        variant: "success",
+      });
       setIsLoading(false);
     } catch (error) {
       toast({
@@ -80,8 +104,8 @@ function App() {
     <div className="flex min-h-[100dvh] pb-10 justify-center items-center flex-col">
       <div className="flex justify-center items-center flex-col gap-3 w-80">
         <div className="flex flex-col items-center justify-center gap-2">
-          <h1 className="text-3xl font-semibold">Check item validity</h1>
-          <p className="text-sm text-white/50 pb-5">
+          <h1 className="text-3xl font-semibold">Check Item Validity</h1>
+          <p className="text-sm text-white/50 pb-3">
             Scan the place where the dates are shown
           </p>
         </div>
@@ -136,34 +160,86 @@ function App() {
           </label>
         )}
 
-        <Button
-          disabled={isLoading}
-          className="w-full mt-2"
-          type="submit"
-          onClick={handleSubmit}
-        >
-          {isLoading ? (
-            <div className="flex justify-center items-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="mr-2 h-4 w-4 animate-spin"
-              >
-                <path d="M21 12a9 9 0 1 1-6.219-8.56" />
-              </svg>
-              Scanning
-            </div>
-          ) : (
-            "Scan"
+        <div className="w-full flex mt-2 gap-3">
+          <Button
+            disabled={isLoading}
+            className="w-full"
+            type="submit"
+            onClick={handleSubmit}
+          >
+            {isLoading ? (
+              <div className="flex justify-center items-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="mr-2 h-4 w-4 animate-spin"
+                >
+                  <path d="M21 12a9 9 0 1 1-6.219-8.56" />
+                </svg>
+                Scanning
+              </div>
+            ) : (
+              "Scan Barcode"
+            )}
+          </Button>
+          {jsonData && (
+            <Dialog>
+              <DialogTrigger>
+                <div className="w-full bg-green-500 font-medium py-2.5 px-5 rounded-md hover:bg-green-600 hover:scale-[102%] transition-all duration-200 text-sm text-background">
+                  Result
+                </div>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader className="text-2xl font-semibold">
+                  Item validity
+                </DialogHeader>
+                <DialogDescription>
+                  {/* {dates && (
+                    <>
+                      <div className="tracking-wider pb-2">
+                        You can eat use this within{" "}
+                      </div>
+                      <p className="text-primary font-semibold text-lg">
+                        {dates.rd} Days {dates.rm} Months {dates.ry} Years
+                      </p>
+                    </>
+                  )} */}
+                  {dates && (
+                    <>
+                      {dates.rd >= 0 ? (
+                        <>
+                          <div className="tracking-wider pb-2">
+                            You can use this within{" "}
+                          </div>
+                          <p className="text-primary tracking-wide font-semibold text-lg">
+                            {dates.rd} Days {dates.rm} Months {dates.ry} Years
+                          </p>
+                        </>
+                      ) : (
+                        <>
+                          <p className="text-red-500 tracking-wide font-semibold text-lg">
+                            Item Expired!
+                          </p>
+                          <div className="tracking-wider pt-2">
+                            {Math.abs(dates.rd)} Days {dates.rm} Months{" "}
+                            {dates.ry} Years Ago
+                          </div>
+                        </>
+                      )}
+                    </>
+                  )}
+                </DialogDescription>
+              </DialogContent>
+            </Dialog>
           )}
-        </Button>
+        </div>
       </div>
       {/* {description && (
       <div className="bg-gray-100 p-4 rounded">
@@ -171,12 +247,12 @@ function App() {
         <pre className="text-sm">{description}</pre>
       </div>
     )} */}
-      {jsonData && (
+      {/* {jsonData && (
         <Card className="p-4 rounded mt-5">
           <h2 className="text-lg font-bold mb-2">JSON Data:</h2>
           <pre className="text-sm">{JSON.stringify(jsonData, null, 2)}</pre>
         </Card>
-      )}
+      )} */}
     </div>
   );
 }

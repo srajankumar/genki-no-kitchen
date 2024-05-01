@@ -1,10 +1,9 @@
 "use client";
 import { useState } from "react";
-import { useAuth } from "@clerk/nextjs";
 import { createClient } from "@/utils/supabase/client";
-import { ClerkProvider, SignedIn, UserButton, useUser } from "@clerk/nextjs";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/components/ui/use-toast";
 
 import {
   GoogleGenerativeAI,
@@ -22,6 +21,7 @@ const Info = () => {
   const [price, setPrice] = useState("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [data, setData] = useState<string>("");
+  const { toast } = useToast();
 
   async function runChat(prompt: string) {
     const genAI = new GoogleGenerativeAI(API_KEY);
@@ -98,8 +98,16 @@ const Info = () => {
       setQuantity("");
       setShelf("");
       setPrice("");
-      console.log("Item added successfully");
+      toast({
+        title: "Item added to inventory",
+        variant: "success",
+      });
     } catch (error) {
+      toast({
+        title: "Something went wrong",
+        description: "Please try again later",
+        variant: "destructive",
+      });
       console.error("Error adding item:", error);
       setIsLoading(false);
     }

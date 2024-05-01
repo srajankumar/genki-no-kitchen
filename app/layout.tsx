@@ -10,6 +10,30 @@ const defaultUrl = process.env.VERCEL_URL
   : "http://localhost:3000";
 
 export const metadata = {
+  openGraph: {
+    title: "Genki no kitchen",
+    description:
+      "Save money and reduce waste in by using up what you already have on hand.",
+    url: "https://genki-no-kitchen.vercel.app/",
+    siteName: "Genki no kitchen",
+    images: [
+      {
+        url: "https://genki-no-kitchen.vercel.app/cover.png",
+        width: 1200,
+        height: 630,
+        alt: "Genki no kitchen",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Genki no kitchen",
+    description:
+      "Save money and reduce waste in by using up what you already have on hand.",
+    images: ["https://genki-no-kitchen.vercel.app/cover.png"],
+  },
   metadataBase: new URL(defaultUrl),
   title: "Genki no kitchen",
   description:

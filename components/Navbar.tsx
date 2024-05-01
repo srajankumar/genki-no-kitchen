@@ -15,18 +15,6 @@ import React from "react";
 import { usePathname } from "next/navigation";
 
 import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
-
-import {
   Dialog,
   DialogContent,
   DialogDescription,
@@ -34,6 +22,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  DialogClose,
 } from "@/components/ui/dialog";
 
 import { Button } from "./ui/button";
@@ -44,7 +33,7 @@ const Navbar = () => {
   const pathname = path;
   return (
     <SignedIn>
-      <div className="fixed z-50 bg-gradient-to-t from-background to-transparent bottom-0 w-full flex justify-between items-center py-5 px-5">
+      <div className="fixed backdrop-blur-sm z-50 bg-gradient-to-t from-background to-transparent bottom-0 w-full flex justify-between items-center py-5 px-5">
         <div className="flex justify-between text-white/50 items-center w-full mx-auto max-w-xl">
           <Link
             href="/"
@@ -74,9 +63,9 @@ const Navbar = () => {
             <p className="text-sm">Recipes</p>
           </Link>
           <Link
-            href="/scan/unpackaged"
+            href="/add"
             className={`${
-              pathname == "/scan/unpackaged" ? "text-white" : ""
+              pathname == "/add" || pathname == "add-manual" ? "text-white" : ""
             } flex gap-1 justify-center items-center flex-col`}
           >
             <PlusCircle className="md:w-6 w-5 md:h-6 h-5" />
@@ -87,7 +76,9 @@ const Navbar = () => {
             <DialogTrigger>
               <div
                 className={`${
-                  pathname == "/scan/packaged" ? "text-white" : ""
+                  pathname == "/validity" || pathname == "/barcode"
+                    ? "text-white"
+                    : ""
                 } flex gap-1 justify-center items-center flex-col`}
               >
                 <ScanBarcode className="md:w-6 w-5 md:h-6 h-5" />
@@ -101,18 +92,22 @@ const Navbar = () => {
                 </DialogDescription>
               </DialogHeader>
               <DialogFooter className="w-full flex gap-3">
-                <Link href="/barcode" className="w-full">
-                  <Button className="w-full">
-                    <Barcode className="md:w-6 w-5 md:h-6 h-5 pr-1" />
-                    Barcode
-                  </Button>
-                </Link>
-                <Link href="/validity" className="w-full">
-                  <Button className="w-full">
-                    <ScanLine className="md:w-6 w-5 md:h-6 h-5 pr-1" />
-                    OCR
-                  </Button>
-                </Link>
+                <DialogClose asChild>
+                  <Link href="/barcode" className="w-full">
+                    <Button className="w-full">
+                      <Barcode className="md:w-6 w-5 md:h-6 h-5 pr-1" />
+                      Barcode
+                    </Button>
+                  </Link>
+                </DialogClose>
+                <DialogClose asChild>
+                  <Link href="/validity" className="w-full">
+                    <Button className="w-full">
+                      <ScanLine className="md:w-6 w-5 md:h-6 h-5 pr-1" />
+                      Validity
+                    </Button>
+                  </Link>
+                </DialogClose>
               </DialogFooter>
             </DialogContent>
           </Dialog>
