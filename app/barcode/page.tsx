@@ -4,6 +4,7 @@ import axios from "axios";
 import { createClient } from "@/utils/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { useToast } from "@/components/ui/use-toast";
 
 function App() {
   const [image, setImage] = useState(null);
@@ -11,6 +12,7 @@ function App() {
   const [jsonData, setJsonData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const { toast } = useToast();
 
   const handleImageChange = (e: any) => {
     const selectedImage = e.target.files[0];
@@ -30,7 +32,11 @@ function App() {
   const handleSubmit = async () => {
     setIsLoading(true);
     if (!image) {
-      alert("Please select an image file");
+      toast({
+        title: "Please select an image file",
+        variant: "destructive",
+      });
+      setIsLoading(false);
       return;
     }
 
@@ -64,6 +70,11 @@ function App() {
       // }
       setIsLoading(false);
     } catch (error) {
+      toast({
+        title: "Something went wrong",
+        description: "Please try again later",
+        variant: "destructive",
+      });
       setIsLoading(false);
       console.error("Error:", error);
     }
@@ -79,8 +90,11 @@ function App() {
   return (
     <div className="flex min-h-[100dvh] pb-10 justify-center items-center flex-col">
       <div className="flex justify-center items-center flex-col gap-3 w-80">
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col items-center justify-center gap-2">
           <h1 className="text-3xl font-semibold">Scan Barcode</h1>
+          <p className="text-sm text-white/50 pb-5">
+            Scan the barcode shown in the packet
+          </p>
         </div>
         {imagePreview ? (
           <label className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
