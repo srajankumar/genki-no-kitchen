@@ -16,7 +16,7 @@ export default function Login() {
         ></Image>
       </div>
       <div className="lg:p-8">
-        <div className="mx-auto flex flex-col justify-center space-y-6 w-[350px]">
+        <div className="mx-auto flex flex-col justify-center space-y-6 md:w-[350px]">
           <SignIn path="/sign-in" />
         </div>
       </div>
