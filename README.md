@@ -1,6 +1,6 @@
-## 元気の - Genki no kitchen
-
-Save money and reduce waste in by using up what you already have on hand.
+<div align="center">
+  <img src="/public/cover.png" alt="mockup"/>
+</div>
 
 ## About
 
