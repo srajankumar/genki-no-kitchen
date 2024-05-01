@@ -31,6 +31,16 @@ Consumers often misunderstand "use by" and "best before" labels. Design an app t
 [![Clerk](https://img.shields.io/badge/Clerk-%2300BFFF.svg?style=for-the-badge&logo=clerk&logoColor=white)](https://www.clerk.dev/)
 [![Shadcnui](https://img.shields.io/badge/Shadcnui-%23000000.svg?style=for-the-badge&logo=shadcnui&logoColor=white)](https://github.com/shadcnui)
 
+## Mockups
+
+<div align="center">
+  <img src="/public/mockup1.png" alt="mockup"/>
+</div>
+
+<div align="center">
+  <img src="/public/mockup2.png" alt="mockup"/>
+</div>
+
 ## References
 
 - [Gemini API](https://ai.google.dev/)
