@@ -1,0 +1,7 @@
+Flask==2.2.2
+Flask_Cors==4.0.0
+numpy==1.25.2
+opencv_contrib_python==4.8.0.76
+opencv_python==4.6.0.66
+pytesseract==0.3.10
+pyzbar==0.1.9
