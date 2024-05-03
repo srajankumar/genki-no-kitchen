@@ -5,3 +5,4 @@ opencv_contrib_python==4.8.0.76
 opencv_python==4.6.0.66
 pytesseract==0.3.10
 pyzbar==0.1.9
+gunicorn==19.7.1
