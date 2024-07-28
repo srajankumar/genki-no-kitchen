@@ -55,20 +55,26 @@ const Hero = () => {
             Genki no kitchen
           </motion.p>
         </motion.div>
-        <div className="flex z-30 gap-3 justify-center items-center mt-10">
+        <div className="max-w-md px-5 flex z-30 gap-3 justify-center items-center mt-10 w-full">
           <SignedOut>
-            <Link href="/sign-in">
-              <Button className="w-40">Get Started</Button>
+            <Link href="/sign-in" className="w-full">
+              <Button className="w-full">Get Started</Button>
             </Link>
           </SignedOut>
           <SignedIn>
-            <Link href="/home">
-              <Button className="w-40">Dashboard</Button>
+            <Link href="/home" className="w-full">
+              <Button className="w-full">Dashboard</Button>
             </Link>
           </SignedIn>
-          <Button className="w-40" variant={"ghost"}>
-            Learn more
-          </Button>
+          <Link
+            href="https://github.com/srajankumar/genki-no-kitchen"
+            target="_blank"
+            className="w-full"
+          >
+            <Button className="w-full" variant={"ghost"}>
+              Learn more
+            </Button>
+          </Link>
         </div>
       </div>
     </div>
