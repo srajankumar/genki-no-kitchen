@@ -31,18 +31,18 @@ const stats = [
 
 export default function Features() {
   const shimmer = (w: number, h: number) => `
-    <svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-      <defs>
-        <linearGradient id="g-light">
-          <stop stop-color="#f3f3f3" offset="20%" />
-          <stop stop-color="#e0e0e0" offset="50%" />
-          <stop stop-color="#f3f3f3" offset="70%" />
-        </linearGradient>
-      </defs>
-      <rect width="${w}" height="${h}" fill="#f3f3f3" />
-      <rect id="r-light" width="${w}" height="${h}" fill="url(#g-light)" />
-      <animate xlink:href="#r-light" attributeName="x" from="-${w}" to="${w}" dur="1s" repeatCount="indefinite"  />
-    </svg>`;
+  <svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+      <linearGradient id="g-dark">
+        <stop stop-color="#333333" offset="20%" />
+        <stop stop-color="#444444" offset="50%" />
+        <stop stop-color="#333333" offset="70%" />
+      </linearGradient>
+    </defs>
+    <rect width="${w}" height="${h}" fill="#333333" />
+    <rect id="r-dark" width="${w}" height="${h}" fill="url(#g-dark)" />
+    <animate xlink:href="#r-dark" attributeName="x" from="-${w}" to="${w}" dur="1s" repeatCount="indefinite"  />
+  </svg>`;
 
   const toBase64 = (str: string) =>
     typeof window === "undefined"
