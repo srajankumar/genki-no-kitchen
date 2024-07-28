@@ -5,6 +5,7 @@ import { createClient } from "@/utils/supabase/client";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useToast } from "@/components/ui/use-toast";
+import Navbar from "@/components/Navbar";
 
 function App() {
   const [image, setImage] = useState(null);
@@ -104,6 +105,9 @@ function App() {
 
   return (
     <div className="flex min-h-[100dvh] pb-10 justify-center items-center flex-col">
+      <div className="fixed z-50 bottom-0 left-0">
+        <Navbar />
+      </div>
       <div className="flex justify-center items-center flex-col gap-3 w-80">
         <div className="flex flex-col items-center justify-center gap-2">
           <h1 className="text-3xl font-semibold">Add Items</h1>

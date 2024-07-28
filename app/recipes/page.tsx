@@ -23,6 +23,7 @@ import {
 } from "@/components/ui/card";
 
 import { ScrollArea } from "@/components/ui/scroll-area";
+import Navbar from "@/components/Navbar";
 
 export default function Home() {
   const [data, setData] = useState<any[]>([]);
@@ -48,6 +49,9 @@ export default function Home() {
 
   return (
     <div className="mx-auto p-5 pt-20 pb-40">
+      <div className="fixed z-50 bottom-0 left-0">
+        <Navbar />
+      </div>
       <h1 className="text-3xl z-20 font-semibold mb-10 text-center">
         Generated Recipes
       </h1>

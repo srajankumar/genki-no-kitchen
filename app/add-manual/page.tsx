@@ -10,6 +10,7 @@ import {
   HarmCategory,
   HarmBlockThreshold,
 } from "@google/generative-ai";
+import Navbar from "@/components/Navbar";
 
 const MODEL_NAME = "gemini-1.0-pro";
 const API_KEY = process.env.NEXT_PUBLIC_GEMINI_API_KEY as string;
@@ -115,6 +116,9 @@ const Info = () => {
 
   return (
     <div className="flex min-h-[100dvh] justify-center items-center">
+      <div className="fixed z-50 bottom-0 left-0">
+        <Navbar />
+      </div>
       <div>
         <div className="flex flex-col gap-2 mb-4">
           <h1 className="text-3xl font-semibold">Add Items</h1>

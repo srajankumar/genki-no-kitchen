@@ -33,12 +33,12 @@ const Navbar = () => {
   const pathname = path;
   return (
     <SignedIn>
-      <div className="fixed backdrop-blur-sm z-50 bg-gradient-to-t from-background to-transparent bottom-0 w-full flex justify-between items-center py-5 px-5">
-        <div className="flex justify-between text-white/50 items-center w-full mx-auto max-w-xl">
+      <div className="fixed z-50 bottom-0 md:bg-transparent bg-background w-full flex justify-between items-center md:py-5">
+        <div className="flex bg-background md:px-10 px-5 md:pb-3 pb-5 pt-4 shadow-lg md:rounded-full justify-between text-white/50 items-center w-full mx-auto max-w-2xl">
           <Link
-            href="/"
+            href="/home"
             className={`${
-              pathname == "/" ? "text-white" : ""
+              pathname == "/home" ? "text-white" : ""
             } flex gap-1 justify-center items-center flex-col`}
           >
             <Home className="md:w-6 w-5 md:h-6 h-5" />
@@ -65,7 +65,9 @@ const Navbar = () => {
           <Link
             href="/add"
             className={`${
-              pathname == "/add" || pathname == "add-manual" ? "text-white" : ""
+              pathname == "/add" || pathname == "/add-manual"
+                ? "text-white"
+                : ""
             } flex gap-1 justify-center items-center flex-col`}
           >
             <PlusCircle className="md:w-6 w-5 md:h-6 h-5" />
@@ -82,7 +84,7 @@ const Navbar = () => {
                 } flex gap-1 justify-center items-center flex-col`}
               >
                 <ScanBarcode className="md:w-6 w-5 md:h-6 h-5" />
-                <p className="text-sm">Barcode</p>
+                <p className="text-sm">Scan</p>
               </div>
             </DialogTrigger>
             <DialogContent>

@@ -15,6 +15,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import Navbar from "@/components/Navbar";
 
 function App() {
   const [image, setImage] = useState(null);
@@ -103,6 +104,9 @@ function App() {
 
   return (
     <div className="flex min-h-[100dvh] pb-10 justify-center items-center flex-col">
+      <div className="fixed z-50 bottom-0 left-0">
+        <Navbar />
+      </div>
       <div className="flex justify-center items-center flex-col gap-3 w-80">
         <div className="flex flex-col items-center justify-center gap-2">
           <h1 className="text-3xl font-semibold">Scan Barcode</h1>

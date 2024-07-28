@@ -8,7 +8,7 @@ export default function Login() {
         <Image
           quality={100}
           priority
-          src="/bg29.png"
+          src="/main.jpg"
           className="bg-black object-center w-full h-[100dvh] z-20"
           width={500}
           height={500}
