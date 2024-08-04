@@ -44,7 +44,7 @@ const page = () => {
           }}
         >
           <motion.h1
-            className="text-center font-semibold md:text-6xl text-5xl md:pt-10"
+            className="text-center font-bold md:text-6xl text-5xl md:pt-10"
             variants={FADE_DOWN_ANIMATION_VARIANTS}
           >
             元気の
