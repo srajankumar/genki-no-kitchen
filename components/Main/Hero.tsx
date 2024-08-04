@@ -43,7 +43,7 @@ const Hero = () => {
           }}
         >
           <motion.h1
-            className="text-center font-semibold md:text-7xl text-6xl md:pt-10"
+            className="text-center font-bold md:text-7xl text-6xl md:pt-10"
             variants={FADE_DOWN_ANIMATION_VARIANTS}
           >
             元気の
