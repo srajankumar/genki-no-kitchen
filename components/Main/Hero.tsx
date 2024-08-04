@@ -26,7 +26,7 @@ const Hero = () => {
         style={{ backgroundImage: 'url("/cover_img.jpg")' }}
       />
       <div className="absolute z-20 h-80 inset-0 bg-gradient-to-b from-transparent to-background"></div>
-      <div className="flex justify-center py-52 items-center flex-col w-full ">
+      <div className="flex justify-center md:py-52 pt-52 pb-40 items-center flex-col w-full ">
         <motion.div
           className="z-30"
           initial="hidden"

@@ -57,25 +57,27 @@ export default function Features() {
             key={stat.id}
             className="flex flex-col justify-center items-center gap-3"
           >
-            <div className="relative hover:cursor-pointer overflow-hidden rounded-xl border group">
-              <div className="absolute inset-0 z-10 transition-colors" />
+            <div className="relative hover:cursor-pointer overflow-hidden rounded-xl border-2 group">
+              <div className="absolute inset-0 z-10 bg-zinc-950/70 transition-colors group-hover:bg-zinc-950/75" />
               <Image
                 placeholder={`data:image/svg+xml;base64,${toBase64(
-                  shimmer(700, 475)
+                  shimmer(500, 500)
                 )}`}
                 priority
                 src={stat.img}
                 alt={stat.name}
-                width={700}
-                height={475}
+                width={500}
+                height={500}
                 quality={100}
-                className="object-cover w-fill h-60 transition-all duration-500 ease-in-out transform group-hover:scale-110"
+                className="object-cover w-fill md:h-72 h-60 transition-all duration-500 ease-in-out transform group-hover:scale-110"
               />
+              <div className="absolute bottom-6 z-20 flex flex-col items-center justify-center">
+                <h1 className="px-5 text-2xl font-bold text-white">
+                  {stat.name}
+                </h1>
+              </div>
             </div>
-            <h1 className="text-xl mt-5 font-semibold text-primary">
-              {stat.name}
-            </h1>
-            <div className="text-base leading-7 text-white/50">
+            <div className="text-base pt-3 leading-7 text-white/50">
               {stat.description}
             </div>
           </div>
